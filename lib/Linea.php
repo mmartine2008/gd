@@ -1,7 +1,7 @@
 <?php
     require_once('Point2D.php');
 
-    class Recta {
+    class Linea {
         protected $canvas;
         protected $origen;
         protected $destino;

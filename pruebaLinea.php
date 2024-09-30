@@ -8,7 +8,15 @@
     $canva->addCartesian();
     $black = $canva->createColor(0, 0, 0);
 
-    $r = new Rectangulo($canva, new Point2D(-100, 50), 100, 150);
-    $r->draw();
+    $r1 = new Rectangulo($canva, new Point2D(-100, 50), 100, 150);
+    $r2 = new Rectangulo($canva, new Point2D(-50, 100), 100, 150);
+
+    $r1->draw();
+    $r2->draw();
+
+    if ($r1->intersecta($r2)) {
+        echo "Se intersectan";
+    }
+
     $canva->draw('rectangulo.png');
     

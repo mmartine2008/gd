@@ -34,11 +34,26 @@ class Camino {
 
     }
 
+    function getLineas() {
+        return $this->lineas;
+    }
+
     function draw() {
 
         foreach($this->lineas as $linea) {
             $linea->draw();
         }
+    }
+
+    function intersecta($otro) {
+        foreach ($this->lineas as $estaLinea) {
+            foreach ($otro->getLineas() as $otraLinea) {
+                if ($estaLinea->intersecta($otraLinea)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
 }

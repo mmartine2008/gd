@@ -16,4 +16,9 @@
         function getY() {
             return $this->y;
         }
+
+        function desplazar($deltaX, $deltaY) {
+            $this->x += $deltaX;
+            $this->y += $deltaY;
+        }         
     }

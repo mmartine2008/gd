@@ -1,6 +1,7 @@
 <?php
 require_once('Point2D.php');
 require_once('Camino.php');
+require_once('Rectangulo.php');
 
 class Poligono extends Camino {
 

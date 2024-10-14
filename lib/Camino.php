@@ -38,10 +38,10 @@ class Camino {
         return $this->lineas;
     }
 
-    function draw() {
+    function draw($color = null) {
 
         foreach($this->lineas as $linea) {
-            $linea->draw();
+            $linea->draw($color);
         }
     }
 
@@ -49,11 +49,17 @@ class Camino {
         foreach ($this->lineas as $estaLinea) {
             foreach ($otro->getLineas() as $otraLinea) {
                 if ($estaLinea->intersecta($otraLinea)) {
-                    return true;
+//                    return true;
                 }
             }
         }
         return false;
+    }
+
+    function desplazar($deltaX, $deltaY) {
+        foreach ($this->lineas as $linea) {
+            $linea->desplazar($deltaX, $deltaY);
+        }
     }
     
 }

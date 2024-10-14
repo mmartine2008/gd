@@ -1,7 +1,7 @@
 <?php
 
     require_once('lib/Canva.php');
-    require_once('lib/Rectangulo.php');
+    require_once('Rectangulo.php');
     require_once('lib/Point2D.php');
 
     $canva = new Canva(640, 480);

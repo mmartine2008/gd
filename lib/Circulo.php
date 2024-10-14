@@ -14,8 +14,12 @@ class Circulo {
         $this->radio = $radio;
     }
 
-    function draw() {
-        $black = $this->canva->createColor(0, 0, 0);
+    function draw($color = null) {
+        if (!$color) {
+            $black = $this->canva->createColor(0, 0, 0);
+        } else {
+            $black = $color;
+        }
 
         $x = $this->radio * cos(0) + $this->centro->getX();
         $y = $this->radio * sin(0) + $this->centro->getY();

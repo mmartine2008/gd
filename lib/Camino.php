@@ -1,5 +1,6 @@
 <?php
 require_once('lib/Linea.php');
+require_once('lib/Circulo.php');
 require_once('Point2D.php');
 
 class Camino {
@@ -60,6 +61,58 @@ class Camino {
         foreach ($this->lineas as $linea) {
             $linea->desplazar($deltaX, $deltaY);
         }
+    }
+
+    function rotar($alpha) {
+        foreach ($this->lineas as $linea) {
+            $linea->rotar($alpha);
+        }
+    }
+
+    function centroGeometrico() {
+
+        $cantidad = count($this->puntos);
+
+        $p0 = $this->puntos[0];
+        $pUltimo = $this->puntos[$cantidad -1];
+
+        if ($p0->igual($pUltimo)) {
+            $cantidad = $cantidad -1;
+        }
+
+        $acumX = (float) 0;
+        $acumY = (float) 0;
+        
+        for($i = 0; $i < $cantidad; $i++) {
+            $p = $this->puntos[$i];
+
+            $acumX += $p->getX();
+            $acumY += $p->getY();
+           
+        }
+        $promX = $acumX / $cantidad;
+        $promY = $acumY / $cantidad;
+        
+        $centro = new Point2D($promX, $promY);
+
+        $rojo = $this->canvas->createColor(255, 0, 0);
+        $this->canvas->moveTo($promX, $promY-10, $rojo);
+        $this->canvas->lineTo($promX, $promY+10, $rojo);
+        $this->canvas->moveTo($promX-10, $promY, $rojo);
+        $this->canvas->lineTo($promX+10, $promY, $rojo);
+
+ //       $c = new Circulo($this->canvas, $centro, 10);
+ //       $c->draw($this->canvas->createColor(255, 0, 0));
+
+        return $centro;
+    }
+
+    function autoRotar($alpha) {
+        $centro = $this->centroGeometrico();
+        $this->desplazar(-$centro->getX()/2, -$centro->getY()/2);
+        $this->rotar($alpha);
+        $this->desplazar($centro->getX()/2, $centro->getY()/2);
+        $this->draw();
     }
     
 }

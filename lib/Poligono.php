@@ -6,7 +6,8 @@ require_once('Rectangulo.php');
 class Poligono extends Camino {
 
     function __construct($canvas, $puntos) {
-        $puntos[] = $puntos[0];
+
+        $this->puntos[] = $puntos[0];
         parent::__construct($canvas, $puntos);
     }
 

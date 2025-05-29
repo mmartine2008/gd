@@ -276,5 +276,10 @@
             $this->getDestino()->desplazar($deltaX, $deltaY);
             
 
-        }        
+        }  
+        
+        function rotar($alpha) {
+            $this->getOrigen()->rotar($alpha);
+            $this->getDestino()->rotar($alpha);
+        }
     }

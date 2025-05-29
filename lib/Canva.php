@@ -21,17 +21,39 @@
             $this->fontColor = imagecolorallocate($this->gd, 0, 0, 0);
 
             $this->actualPoint2D = new Point2D(0, 0);
+            $this->addCartesian();
+        }
+
+        function addXAxis() {
+            $gray = imagecolorallocate($this->gd, 127, 127, 127);
+
+            $this->moveTo(0, 0);
+            $this->lineTo($this->width/2 * 0.99, 0, $gray);
+
+            $this->moveTo(0, 0);
+            $this->lineTo( -$this->width/2 * 0.99, 0, $gray);
+        }
+
+        function addYAxis() {
+            $gray = imagecolorallocate($this->gd, 127, 127, 127);
+
+            $this->moveTo(0, 0);
+            $this->lineTo(0, -$this->height/2 * 0.99, $gray);
+
+            $this->moveTo(0, 0);
+            $this->lineTo(0, $this->height/2 * 0.99, $gray);
         }
 
         function addCartesian() {
             $white = $this->createColor(255, 255, 255);
         
             $this->setBackground($white);
-            $this->texto(5, 20, "(0, 0)");
+            //$this->texto(5, 20, "(0, 0)");
             $this->texto(580, 20, "(640, 0)");
             $this->texto(5, 460, "(0, 480)");
             $this->texto(560, 460, "(640, 480)");
-
+            $this->addXAxis();
+            $this->addYAxis();
         }
 
         function createColor($r, $g, $b) {
